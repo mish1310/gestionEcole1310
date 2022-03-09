@@ -30,10 +30,10 @@ CREATE TABLE IF NOT EXISTS EtudiantLogin(
 
 CREATE TABLE Paiement(
     idPaiement int NOT NULL,
-    idEtudiant int NOT NULL,
+    idFicheScolaire int NOT NULL,
     montant integer CHECK(montant>0),
     progression integer,
-    CONSTRAINT fk_Paiement_idEtudiant1 FOREIGN KEY (idEtudiant) REFERENCES Etudiant(idEtudiant)
+    CONSTRAINT fk_Paiement_idFicheScolaire FOREIGN KEY (idScolaire) REFERENCES ficheScolaire(idFichescolaire)
 );
 
 
