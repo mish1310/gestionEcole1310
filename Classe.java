@@ -1,17 +1,43 @@
-public class Classe{
-    Integer idClasse;
-    String designation;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package procedure;
 
-    public Integer getIdClasse() {
-        return idClasse;
+import java.sql.Connection;
+
+/**
+ *
+ * @author Hart
+ */
+public class Classe {
+    Matiere matiere;
+    String nomClasse,anneeScolaire;
+    public void insererCoeff(Connection con){
+        
     }
-    public void setIdClasse(Integer idClasse) {
-        this.idClasse = idClasse;
+    public Matiere getMatiere() {
+        return matiere;
     }
-    public String getDesignation() {
-        return designation;
+
+    public void setMatiere(Matiere matiere) {
+        this.matiere = matiere;
     }
-    public void setDesignation(String designation) {
-        this.designation = designation;
+
+    public String getNomClasse() {
+        return nomClasse;
+    }
+
+    public void setNomClasse(String nomClasse) {
+        this.nomClasse = nomClasse;
+    }
+
+    public String getAnneeScolaire() {
+        return anneeScolaire;
+    }
+
+    public void setAnneeScolaire(String anneeScolaire) {
+        this.anneeScolaire = anneeScolaire;
     }
 }
