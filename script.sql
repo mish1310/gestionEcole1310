@@ -104,3 +104,43 @@ CREATE TABLE Ecole.fichescolaire(
     CONSTRAINT FK_FicheScolaire_idEtudiant FOREIGN KEY(idEtudiant) REFERENCES Ecole.Etudiant(idEtudiant),
     CONSTRAINT FK_FicheScolaire_idClasse FOREIGN KEY(idClasse) REFERENCES Ecole.Classe(idClasse)
 );
+
+CREATE SEQUENCE Ecole.classe_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1;
+
+CREATE SEQUENCE Ecole.examen_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1;
+
+CREATE SEQUENCE Ecole.bulletin_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1;
+
+CREATE SEQUENCE Ecole.etudiantlogin_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1;
+
+CREATE SEQUENCE Ecole.paiement_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1;
+
+CREATE SEQUENCE Ecole.matiere_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1;
+
+CREATE SEQUENCE Ecole.admin_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1;
+
+CREATE SEQUENCE Ecole.prof_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1;
