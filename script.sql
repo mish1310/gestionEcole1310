@@ -25,10 +25,6 @@ CREATE TABLE Classe (
 	CONSTRAINT Pk_Classe_idClasse PRIMARY KEY ( idClasse )
  );
 
-ALTER TABLE Classe ADD CONSTRAINT Fk_Classe_Ecolage FOREIGN KEY ( idClasse ) REFERENCES Ecolage( idClasse ) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE Etudiant ADD CONSTRAINT Fk_Etudiant_Ecolage FOREIGN KEY ( idEtudiant ) REFERENCES Ecolage( idEtudiant ) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
 
 CREATE TABLE IF NOT EXISTS EtudiantLogin(
     idEtudiantLogin int NOT NULL,
@@ -112,6 +108,12 @@ CREATE SEQUENCE classe_seq
     START 1
     MINVALUE 1;
 
+
+CREATE SEQUENCE etudiant_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1;
+
 CREATE SEQUENCE examen_seq
     INCREMENT 1
     START 1
@@ -137,6 +139,11 @@ CREATE SEQUENCE matiere_seq
     START 1
     MINVALUE 1;
 
+CREATE SEQUENCE ecolage_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1;
+
 CREATE SEQUENCE admin_seq
     INCREMENT 1
     START 1
@@ -151,3 +158,49 @@ CREATE SEQUENCE public.fichierscolaire_seq
     INCREMENT 1
     START 1
     MINVALUE 1;
+
+
+INSERT INTO public.admin(
+	idadmin, login, mdp)
+	VALUES (nextval('admin_seq'), 'admin@gmail.com','admin123!');
+
+
+INSERT INTO public.prof(
+	idprof, login, mdp)
+	VALUES (nextval('prof_seq'), 'profadmin', 'prof123!');
+
+INSERT INTO public.etudiant(
+	idetudiant, nom, login, mdp)
+	VALUES (nextval('etudiant_seq'), 'Hart', 'hart113@gmail.com', 'hart123!');
+
+INSERT INTO public.etudiantlogin(
+	idetudiantlogin, login, mdp, idetudiant)
+	VALUES (nextval('etudiantlogin_seq'), 'Hart@gmail.com', 'hart123!',1);
+
+INSERT INTO public.paiement(
+	idpaiement, idetudiant, montant, progression)
+	VALUES (nextval('paiement_seq'), 1, 3000, 200);
+
+INSERT INTO public.matiere(
+	idmatiere, nommatiere, coefficient)
+	VALUES (nextval('matiere_seq'),'Philo',6);
+
+INSERT INTO public.ecolage(
+	idecolage, montant, progression, idetudiant, idclasse)
+	VALUES (nextval('ecolage_Seq'), 30000, 200, 1,2);
+
+INSERT INTO public.examen(
+	idexamen, periode, idclasse, anneescolaire)
+	VALUES (nextval('examen_seq'), 3,2,2022);
+
+INSERT INTO public.bulletin(
+	idbulletin, idexamen, idetudiant, note)
+	VALUES (nextval('bulletin_seq'), 1, 1, 12);
+
+INSERT INTO public.fichescolaire(
+	idfichescolaire, mois, anneescolaire, idetudiant, idclasse, numero)
+	VALUES (nextval('fichierscolaire_seq'),3,2022,1, 2, 1);
+
+INSERT INTO public.prof(
+	idprof, login, mdp)
+	VALUES (nextval('prof_seq'),'Lehibe@gmail.com','prof123!');
