@@ -197,3 +197,4 @@ INSERT INTO public.fichescolaire(
 INSERT INTO public.prof(
 	idprof, login, mdp)
 	VALUES (nextval('prof_seq'),'Lehibe@gmail.com','prof123!');
+INSERT INTO classe values(nextval('classe_seq'),1,'SANDRATRA')
