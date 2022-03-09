@@ -19,13 +19,6 @@ CREATE TABLE Etudiant (
 	CONSTRAINT Pk_Etudiant_idEtudiant PRIMARY KEY ( idEtudiant )
  );
 
-CREATE TABLE Classe ( 
-	idClasse             int  NOT NULL  ,
-	designation          varchar(4)  NOT NULL  ,
-	CONSTRAINT Pk_Classe_idClasse PRIMARY KEY ( idClasse )
- );
-
-
 CREATE TABLE IF NOT EXISTS EtudiantLogin(
     idEtudiantLogin int NOT NULL,
     login VARCHAR(30) NOT NULL,
