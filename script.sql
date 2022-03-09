@@ -144,3 +144,8 @@ CREATE SEQUENCE Ecole.prof_seq
     INCREMENT 1
     START 1
     MINVALUE 1;
+    
+CREATE SEQUENCE public.fichierscolaire_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1;
