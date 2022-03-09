@@ -184,7 +184,7 @@ INSERT INTO public.ecolage(
 
 INSERT INTO public.examen(
 	idexamen, periode, idclasse, anneescolaire)
-	VALUES (nextval('examen_seq'), 3,2,2022);
+	VALUES (nextval('examen_seq'), 3,1,2022);
 
 INSERT INTO public.bulletin(
 	idbulletin, idexamen, idetudiant, note)
@@ -192,7 +192,7 @@ INSERT INTO public.bulletin(
 
 INSERT INTO public.fichescolaire(
 	idfichescolaire, mois, anneescolaire, idetudiant, idclasse, numero)
-	VALUES (nextval('fichierscolaire_seq'),3,2022,1, 2, 1);
+	VALUES (nextval('fichierscolaire_seq'),3,2022,1, 1, 1);
 
 INSERT INTO public.prof(
 	idprof, login, mdp)
