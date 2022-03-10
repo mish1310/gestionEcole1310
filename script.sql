@@ -28,13 +28,7 @@ CREATE TABLE IF NOT EXISTS EtudiantLogin(
     CONSTRAINT fk_EtudiantLogin_idEtudiant1 FOREIGN KEY (idEtudiant) REFERENCES Etudiant(idEtudiant)
 );
 
-CREATE TABLE Paiement(
-    idPaiement int NOT NULL,
-    idFicheScolaire int NOT NULL,
-    montant integer CHECK(montant>0),
-    progression integer,
-    CONSTRAINT fk_Paiement_idFicheScolaire FOREIGN KEY (idScolaire) REFERENCES ficheScolaire(idFichescolaire)
-);
+
 
 
 CREATE TABLE Matiere(
@@ -52,7 +46,24 @@ CREATE TABLE Classe(
     CONSTRAINT PK_CLASSE_idclasse PRIMARY KEY(idClasse),
     CONSTRAINT FK_Classe_idMatiere  FOREIGN KEY(idMatiere) REFERENCES Matiere(idMatiere)
 );
+CREATE TABLE fichescolaire(
+    idFicheScolaire INTEGER NOT NULL PRIMARY KEY,
+    mois integer NOT NULL CHECK (mois<=12),
+    anneeScolaire integer NOT NULL CHECK (anneeScolaire>0),
+    idEtudiant int NOT NULL,
+    idClasse int NOT NULL,
+    numero int NOT NULL,
+    CONSTRAINT FK_FicheScolaire_idEtudiant FOREIGN KEY(idEtudiant) REFERENCES Etudiant(idEtudiant),
+    CONSTRAINT FK_FicheScolaire_idClasse FOREIGN KEY(idClasse) REFERENCES Classe(idClasse)
+);
 
+CREATE TABLE Paiement(
+    idPaiement int NOT NULL,
+    idFicheScolaire int NOT NULL,
+    montant integer CHECK(montant>0),
+    progression integer,
+    CONSTRAINT fk_Paiement_idFicheScolaire FOREIGN KEY (idFicheScolaire) REFERENCES ficheScolaire(idFichescolaire)
+);
 
 CREATE TABLE Examen(
     idExamen int NOT NULL ,
@@ -85,16 +96,7 @@ CREATE TABLE admin(
     mdp VARCHAR(30)
 );
 
-CREATE TABLE fichescolaire(
-    idFicheScolaire INTEGER NOT NULL PRIMARY KEY,
-    mois integer NOT NULL CHECK (mois<=12),
-    anneeScolaire integer NOT NULL CHECK (anneeScolaire>0),
-    idEtudiant int NOT NULL,
-    idClasse int NOT NULL,
-    numero int NOT NULL,
-    CONSTRAINT FK_FicheScolaire_idEtudiant FOREIGN KEY(idEtudiant) REFERENCES Etudiant(idEtudiant),
-    CONSTRAINT FK_FicheScolaire_idClasse FOREIGN KEY(idClasse) REFERENCES Classe(idClasse)
-);
+
 
 CREATE SEQUENCE classe_seq
     INCREMENT 1
@@ -151,50 +153,54 @@ CREATE SEQUENCE public.fichierscolaire_seq
     INCREMENT 1
     START 1
     MINVALUE 1;
+
+INSERT INTO matiere(
+	idmatiere, nommatiere, coefficient)
+	VALUES (nextval('matiere_seq'),'Philo',6);
+
 INSERT INTO classe values(nextval('classe_seq'),1,'SANDRATRA');
 
-INSERT INTO public.admin(
+INSERT INTO admin(
 	idadmin, login, mdp)
 	VALUES (nextval('admin_seq'), 'admin@gmail.com','admin123!');
 
 
-INSERT INTO public.prof(
+INSERT INTO prof(
 	idprof, login, mdp)
 	VALUES (nextval('prof_seq'), 'profadmin', 'prof123!');
 
-INSERT INTO public.etudiant(
+INSERT INTO etudiant(
 	idetudiant, nom, login, mdp)
 	VALUES (nextval('etudiant_seq'), 'Hart', 'hart113@gmail.com', 'hart123!');
 
-INSERT INTO public.etudiantlogin(
+INSERT INTO etudiantlogin(
 	idetudiantlogin, login, mdp, idetudiant)
 	VALUES (nextval('etudiantlogin_seq'), 'Hart@gmail.com', 'hart123!',1);
 
-INSERT INTO public.paiement(
-	idpaiement, idetudiant, montant, progression)
-	VALUES (nextval('paiement_seq'), 1, 3000, 200);
 
-INSERT INTO public.matiere(
-	idmatiere, nommatiere, coefficient)
-	VALUES (nextval('matiere_seq'),'Philo',6);
 
-INSERT INTO public.ecolage(
+
+INSERT INTO ecolage(
 	idecolage, montant, progression, idetudiant, idclasse)
 	VALUES (nextval('ecolage_Seq'), 30000, 200, 1,2);
 
-INSERT INTO public.examen(
+INSERT INTO examen(
 	idexamen, periode, idclasse, anneescolaire)
 	VALUES (nextval('examen_seq'), 3,1,2022);
 
-INSERT INTO public.bulletin(
-	idbulletin, idexamen, idetudiant, note)
+INSERT INTO bulletin(
+	idbulletin, idExamen, idetudiant, note)
 	VALUES (nextval('bulletin_seq'), 1, 1, 12);
 
-INSERT INTO public.fichescolaire(
+INSERT INTO fichescolaire(
 	idfichescolaire, mois, anneescolaire, idetudiant, idclasse, numero)
 	VALUES (nextval('fichierscolaire_seq'),3,2022,1, 1, 1);
+   
+INSERT INTO Paiement(
+	idpaiement, idfichescolaire, montant, progression)
+	VALUES (nextval('paiement_seq'), 1, 3000, 200);
 
-INSERT INTO public.prof(
+INSERT INTO prof(
 	idprof, login, mdp)
 	VALUES (nextval('prof_seq'),'Lehibe@gmail.com','prof123!');
 
